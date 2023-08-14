@@ -1,0 +1,37 @@
+services:
+  m1:
+    build:
+      context: .
+      dockerfile: ./apps/m1/Dockerfile
+      target: development
+    command: npm run start:dev
+    env_file:
+      - ./apps/m1/.env
+    depends_on:
+      - m2
+      - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3001:3001'
+  m2:
+    build:
+      context: .
+      dockerfile: ./apps/m2/Dockerfile
+      target: development
+    command: npm run start:dev m2
+    env_file:
+      - ./apps/m2/.env
+    depends_on:
+      - rabbitmq
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3002:3002'
+
+  rabbitmq:
+    image: rabbitmq
+    ports:
+      - '5672:5672'
