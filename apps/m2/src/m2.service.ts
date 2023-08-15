@@ -9,11 +9,11 @@ export class M2Service {
 
   constructor(@Inject(M1_SERVICE) private m1Client: ClientProxy) {}
 
-  async getHello() {
-    this.logger.log('M2 service catch get_hello and emit: response_hello');
+  async get(data: any) {
+    this.logger.log('M2 service caught get and emit response', data);
     await lastValueFrom(
-      this.m1Client.emit('response_hello', {
-        GET: 'response_hello',
+      this.m1Client.emit('response', {
+        data: 'response',
       }),
     );
   }

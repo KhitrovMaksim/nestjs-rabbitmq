@@ -8,12 +8,12 @@ export class M1Service {
   private readonly logger = new Logger(M1Service.name);
   constructor(@Inject(M2_SERVICE) private m2Client: ClientProxy) {}
 
-  async getHello() {
+  async get() {
     try {
-      this.logger.log('M1 service emit get_hello');
+      this.logger.log('M1 service added to queue request');
       await lastValueFrom(
-        this.m2Client.emit('get_hello', {
-          GET: 'get_hello',
+        this.m2Client.emit('get', {
+          data: 'request',
         }),
       );
     } catch (error) {
@@ -21,7 +21,7 @@ export class M1Service {
     }
   }
 
-  responseHello() {
-    this.logger.log('M1 service catch response_hello');
+  response(data: any) {
+    this.logger.log('M1 service caught response', data);
   }
 }

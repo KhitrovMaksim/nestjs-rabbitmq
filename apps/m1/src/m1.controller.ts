@@ -11,13 +11,13 @@ export class M1Controller {
   ) {}
 
   @Get()
-  async getHello() {
-    await this.m1Service.getHello();
+  async get() {
+    await this.m1Service.get();
   }
 
-  @EventPattern('response_hello')
+  @EventPattern('response')
   async handleGetHello(@Payload() data: any, @Ctx() context: RmqContext) {
-    this.m1Service.responseHello();
+    this.m1Service.response(data);
     this.rabbitmqService.ack(context);
   }
 }

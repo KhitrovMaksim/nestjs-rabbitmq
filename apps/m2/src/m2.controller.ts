@@ -10,9 +10,9 @@ export class M2Controller {
     private readonly rabbitmqService: RabbitmqService,
   ) {}
 
-  @EventPattern('get_hello')
+  @EventPattern('get')
   async handleGetHello(@Payload() data: any, @Ctx() context: RmqContext) {
-    await this.m2Service.getHello();
+    await this.m2Service.get(data);
     this.rabbitmqService.ack(context);
   }
 }
