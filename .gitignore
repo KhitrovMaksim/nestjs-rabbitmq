@@ -46,15 +46,6 @@ out
 # TypeScript cache
 *.tsbuildinfo
 
-# API keys and secrets
-.env
-.env.development.local
-.env.test.local
-.env.production.local
-.env.local
-.development.env
-.production.env
-
 # Ignore built ts files
 dist/**/*
 build/**/*
