@@ -32,6 +32,7 @@ services:
       - '3002:3002'
 
   rabbitmq:
-    image: rabbitmq
+    image: rabbitmq:3-management
     ports:
       - '5672:5672'
+      - '15672:15672'
