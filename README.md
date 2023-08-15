@@ -26,9 +26,15 @@ The mechanism for asynchronous processing of HTTP requests.
  - We place the result of processing the job in RabbitMQ.
  - We return the result of the HTTP request as the result of the job from RabbitMQ.
 
+## Scheme
+
+![scheme.png](scheme.png)
+
 ## Local deployment
 
 ```bash
+$ git clone https://github.com/KhitrovMaksim/nestjs-rabbitmq.git
+$ cd nestjs-rabbitmq
 $ docker-compose up --build -V
 ```
 
